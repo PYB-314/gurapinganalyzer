@@ -22,10 +22,12 @@ client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 class AnalysisRequest(BaseModel):
     text: str
     mode: str
+    
+from typing import List
 
 class DetailRequest(BaseModel):
     text: str
-    propositions: list[str]
+    propositions: List[str]
 
 SYSTEM_PROMPT = """
 당신은 논리 분석 엔진입니다. 반드시 아래 JSON 형식으로만 응답하세요. 설명체 문장 금지.
