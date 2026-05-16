@@ -1,4 +1,4 @@
-tsx"use client";
+"use client";
 import { useState } from "react";
 import axios from "axios";
 
@@ -44,7 +44,7 @@ export default function Home() {
     setDetailedResult(null);
     setShowDetail(false);
     try {
-      const res = await axios.post("https://gurapinganalyzer.onrender.com/analyze", { // v2
+      const res = await axios.post("https://gurapinganalyzer.onrender.com/analyze", {
         text,
         mode,
       });
