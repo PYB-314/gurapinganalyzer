@@ -27,7 +27,7 @@ class DetailRequest(BaseModel):
     propositions: List[str]
 
 SYSTEM_PROMPT = """
-당신은 논리 분석 엔진입니다. 반드시 아래 JSON 형식으로만 응답하세요. 설명체 문장 금지.
+당신은 논리 분석 엔진입니다. 반드시 아래 JSON 형식으로만 응답하세요. 설명체 문장 금지. 또한 모든 응답은 한국어로만 하세요.
 
 {
   "propositions": ["명제1", "명제2"],
@@ -42,7 +42,7 @@ SYSTEM_PROMPT = """
 """
 
 DETAIL_PROMPT = """
-당신은 논리 분석 엔진입니다. 반드시 아래 JSON 형식으로만 응답하세요. 설명체 문장 금지.
+당신은 논리 분석 엔진입니다. 반드시 아래 JSON 형식으로만 응답하세요. 설명체 문장 금지. 또한 모든 응답은 한국어로만 하세요.
 
 {
   "detailed_analysis": [
@@ -63,7 +63,7 @@ DETAIL_PROMPT = """
 @app.post("/analyze")
 async def analyze(req: AnalysisRequest):
     if req.mode == "news":
-        user_prompt = f"다음 텍스트에서 명제를 추출하고 각 명제의 참/거짓과 반례를 분석하세요:\n\n{req.text}"
+        user_prompt = f"다음 텍스트에서 명제를 추출하고 각 명제의 참/거짓과 반례를 분석하세요. 또한 반례가 없을 경우에는 null이 아닌 '판정이 참이므로 반례는 존재하지 않음'이라고 응답하세요:\n\n{req.text}"
     else:
         user_prompt = f"다음 논증의 전제와 결론을 파악하고 반례를 분석하세요:\n\n{req.text}"
 
