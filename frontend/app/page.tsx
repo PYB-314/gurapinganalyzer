@@ -44,7 +44,7 @@ export default function Home() {
     setDetailedResult(null);
     setShowDetail(false);
     try {
-      const res = await axios.post("https://gurapinganalyzer.onrender.com/analyze", {
+      const res = await axios.post("https://gurapinganalyzer.onrender.com/analyze", { // v2
         text,
         mode,
       });
