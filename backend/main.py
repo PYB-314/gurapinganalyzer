@@ -1,12 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from typing import List
 from groq import Groq
-from dotenv import load_dotenv
 import os
 import json
-
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
 
 app = FastAPI()
 
@@ -19,11 +17,10 @@ app.add_middleware(
 )
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+
 class AnalysisRequest(BaseModel):
     text: str
     mode: str
-    
-from typing import List
 
 class DetailRequest(BaseModel):
     text: str
@@ -46,8 +43,6 @@ SYSTEM_PROMPT = """
 
 DETAIL_PROMPT = """
 당신은 논리 분석 엔진입니다. 반드시 아래 JSON 형식으로만 응답하세요. 설명체 문장 금지.
-
-각 명제에 대해 역과 대우를 만들고 참/거짓을 판별하세요.
 
 {
   "detailed_analysis": [
@@ -87,7 +82,8 @@ async def analyze(req: AnalysisRequest):
 
 @app.post("/analyze-detail")
 async def analyze_detail(req: DetailRequest):
-    user_prompt = f"원본 텍스트:\n{req.text}\n\n추출된 명제들:\n" + "\n".join(req.propositions)
+    props_text = "\n".join(req.propositions)
+    user_prompt = f"원본 텍스트:\n{req.text}\n\n추출된 명제들:\n{props_text}"
 
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
