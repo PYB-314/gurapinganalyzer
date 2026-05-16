@@ -60,7 +60,7 @@ export default function Home() {
     setDetailLoading(true);
     setShowDetail(true);
     try {
-      const res = await axios.post("http://localhost:8000/analyze-detail", {
+      const res = await axios.post("https://gurapinganalyzer.onrender.com/analyze-detail", {
         text,
         propositions: result.propositions,
       });
@@ -85,7 +85,7 @@ export default function Home() {
         {/* 왼쪽 위 동아리 표시 */}
         <p className="text-xs text-gray-400 mb-2">창의인재부 동아리 봉사활동 프로젝트</p>
 
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">구라핑 분석기</h1>
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">자료 분석기</h1>
         <p className="text-gray-500 mb-8">논증 또는 뉴스를 입력하면 명제를 추출하고 반례를 분석해드립니다.</p>
 
         {/* 모드 선택 */}
