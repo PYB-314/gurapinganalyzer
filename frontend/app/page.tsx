@@ -207,7 +207,7 @@ export default function Home() {
         <div className="mt-12 pt-6 border-t">
           <p className="text-xs text-gray-400 text-center">
             ※ 참고: 상대적으로 최신 자료를 분석할 때는 오류 가능성 높음 주의(자료 부족 이슈)
-            버그 제보-harrtn7768@gmail.com
+            버그 제보-harryn7768@gmail.com
           </p>
         </div>
 

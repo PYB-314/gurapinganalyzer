@@ -49,7 +49,7 @@ DETAIL_PROMPT = """
     {
       "proposition": "원래 명제",
       "converse": "역 명제",
-      "contrapositive": "대우 명제",
+      "contrapositive": "대우 명제 또한 명제가 참이면 대우 명제도 참이고 명제가 거짓이면 대우 명제도 거짓임",
       "original_verdict": "참 또는 거짓",
       "converse_verdict": "참 또는 거짓",
       "contrapositive_verdict": "참 또는 거짓",
