@@ -42,14 +42,17 @@ SYSTEM_PROMPT = """
 """
 
 DETAIL_PROMPT = """
-당신은 논리 분석 엔진입니다. 반드시 아래 JSON 형식으로만 응답하세요. 설명체 문장 금지. 또한 모든 응답은 한국어로만 하세요.
-
+당신은 논리 분석 엔진입니다. 반드시 아래 JSON 형식으로만 응답하세요. 설명체 문장 금지.
+반드시 아래 논리 규칙을 따르세요:
+1. 명제가 참이면 대우도 반드시 참이어야 합니다.
+2. 명제가 거짓이면 대우도 반드시 거짓이어야 합니다.
+3. 역의 진리값은 명제와 달라도 됩니다.
 {
   "detailed_analysis": [
     {
       "proposition": "원래 명제",
       "converse": "역 명제",
-      "contrapositive": "대우 명제 또한 명제가 참이면 대우 명제도 참이고 명제가 거짓이면 대우 명제도 거짓임",
+      "contrapositive": "대우 명제",
       "original_verdict": "참 또는 거짓",
       "converse_verdict": "참 또는 거짓",
       "contrapositive_verdict": "참 또는 거짓",
